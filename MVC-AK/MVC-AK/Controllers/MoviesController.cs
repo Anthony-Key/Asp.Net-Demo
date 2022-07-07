@@ -6,16 +6,16 @@ namespace MVC_AK.Controllers
 {
     public class MoviesController : Controller
     {
+        List<Customer> customers = new List<Customer>
+            {
+                new Customer() { Name="Anthony"},
+                new Customer() { Name="Arran"},
+                new Customer() { Name="Tim"}
+            };
+
         public IActionResult Random()
         {
-            var movie = new Movie() { mName = "bob" };
-
-            var customers = new List<Customer>
-            {
-                new Customer() { Name="Customer 1"},
-                new Customer() { Name="Customer 2"},
-                new Customer() { Name="Customer 3"}
-            };
+            var movie = new Movie() { mName = "Shrek The Third" };
 
             var viewModel = new RandomMovieViewModel
             {
@@ -24,7 +24,21 @@ namespace MVC_AK.Controllers
             };
 
             return View(viewModel);
-            //return RedirectToAction("Index", "Home");
+        }
+
+        public List<string> Get(string name)
+        {
+            var found = new List<string>();
+
+            customers.ForEach(x =>
+            {
+                if (x.Name.Contains(name))
+                {
+                    found.Add(x.Name);
+                }
+            });
+
+            return found;
         }
 
         public ActionResult Edit(int id)
