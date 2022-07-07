@@ -4,12 +4,14 @@
 	ViewBag.Title = "Random";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<br />
 
 <form class="d-flex" asp-action="Get">
 	<input class="form-control me-sm-2" type="text" placeholder="Search" name="name">
 	<button id="basic-text1" class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
 </form>
 
+<br>
 <h1>@Model.Movie.mName</h1>
 
 @if (Model.Customers.Count == 0)

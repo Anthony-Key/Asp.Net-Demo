@@ -6,14 +6,14 @@ namespace MVC_AK.Controllers
 {
     public class MoviesController : Controller
     {
-        List<Customer> customers = new List<Customer>
-            {
+        private List<Customer> customers = new List<Customer>
+        {
                 new Customer() { Name="Anthony"},
                 new Customer() { Name="Arran"},
                 new Customer() { Name="Tim"}
-            };
+        };
 
-        public IActionResult Random()
+        public IActionResult All()
         {
             var movie = new Movie() { mName = "Shrek The Third" };
 
