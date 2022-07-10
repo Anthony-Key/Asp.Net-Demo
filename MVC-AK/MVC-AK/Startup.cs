@@ -14,7 +14,8 @@ namespace MVC_AK
 
         public void ConfigurationServices(IServiceCollection services, string environment)
         {
-            services.AddDbContext<MyDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("dbConnection")));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddDbContext<MovieDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("dbConnection")));
         }
     }
 }

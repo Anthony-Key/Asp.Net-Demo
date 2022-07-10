@@ -6,6 +6,8 @@ namespace MVC_AK.Controllers
 {
     public class MoviesController : Controller
     {
+        private readonly MovieDbContext _dbContext;
+
         private List<Customer> customers = new List<Customer>
         {
                 new Customer() { Name="Anthony"},
@@ -13,15 +15,33 @@ namespace MVC_AK.Controllers
                 new Customer() { Name="Tim"}
         };
 
-        public IActionResult All()
+        public MoviesController(MovieDbContext context)
         {
-            var movie = new Movie() { mName = "Shrek The Third" };
+            _dbContext = context;
+        }
 
-            var viewModel = new RandomMovieViewModel
+        public IActionResult All(string name)
+        {
+
+            //add tolower
+            var movies = new List<string>();
+
+            _dbContext.Movies.ToList().ForEach(movie =>
             {
-                Movie = movie,
-                Customers = customers
-            };
+                if (String.IsNullOrEmpty(name))
+                {
+                    movies.Add(movie.mName);
+                } else
+                {
+                    if (movie.mName.Contains(name))
+                    {
+                        movies.Add(movie.mName);
+                    }
+                }
+            });
+
+            var viewModel = new MoviesViewModel();
+            viewModel.mNames = movies;
 
             return View(viewModel);
         }
@@ -30,11 +50,11 @@ namespace MVC_AK.Controllers
         {
             var found = new List<string>();
 
-            customers.ForEach(x =>
+            _dbContext.Movies.ToList().ForEach(x =>
             {
-                if (x.Name.Contains(name))
+                if (x.mName.Contains(name))
                 {
-                    found.Add(x.Name);
+                    found.Add(x.mName);
                 }
             });
 

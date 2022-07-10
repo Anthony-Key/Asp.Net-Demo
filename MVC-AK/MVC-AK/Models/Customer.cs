@@ -9,5 +9,8 @@ namespace MVC_AK.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-    }
+        public bool isSubscribedToNewsLetter { get; set; }
+		public MembershipType Membership { get; set; }
+		public byte MembershipId { get; set; }
+	}
 }

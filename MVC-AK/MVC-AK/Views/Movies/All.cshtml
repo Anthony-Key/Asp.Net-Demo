@@ -1,30 +1,28 @@
 ﻿@using MVC_AK.Controllers
-@model MVC_AK.ViewModels.RandomMovieViewModel
+@model MVC_AK.ViewModels.MoviesViewModel
 @{
 	ViewBag.Title = "Random";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <br />
 
-<form class="d-flex" asp-action="Get">
+<form class="d-flex" asp-action="All">
 	<input class="form-control me-sm-2" type="text" placeholder="Search" name="name">
 	<button id="basic-text1" class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
 </form>
 
 <br>
-<h1>@Model.Movie.mName</h1>
-
-@if (Model.Customers.Count == 0)
+@if (Model.mNames.Count == 0)
 {
-	<p>No Customers.</p>
+	<p>No Movies.</p>
 }
 else
 {
 	<ul>
-		@foreach (var customer in Model.Customers)
+		@foreach (var mNames in Model.mNames)
 		{
 			<li>
-				@customer.Name
+				<h1>@mNames</h1>
 			</li>
 		}
 	</ul>

@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MVC_AK.Models
 {
-    public class MyDBContext : IdentityDbContext
+    public class MovieDbContext : IdentityDbContext
     {
-        public MyDBContext() : base()
+        public MovieDbContext() : base()
         {
         }
 
-        public MyDBContext(DbContextOptions<MyDBContext> options) : base(options)
+        public MovieDbContext(DbContextOptions<MovieDbContext> options) : base(options)
         {
         }
 

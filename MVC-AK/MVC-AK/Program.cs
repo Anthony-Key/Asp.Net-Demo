@@ -9,14 +9,12 @@ builder.Services.AddControllersWithViews();
 var startup = new Startup(builder.Configuration);
 startup.ConfigurationServices(builder.Services, builder.Environment.EnvironmentName);
 
-
-
 var app = builder.Build();
 
 
 using (var scope = app.Services.CreateScope())
 {
-    var dataContext = scope.ServiceProvider.GetRequiredService<MyDBContext>();
+    var dataContext = scope.ServiceProvider.GetRequiredService<MovieDbContext>();
     dataContext.Database.Migrate();
 }
 
