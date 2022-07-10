@@ -2,7 +2,13 @@ using Microsoft.EntityFrameworkCore;
 using MVC_AK;
 using MVC_AK.Models;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    ApplicationName = typeof(Program).Assembly.FullName,
+    ContentRootPath = Path.GetFullPath(Directory.GetCurrentDirectory()),
+    WebRootPath = "wwwroot",
+    Args = args
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
